@@ -24,12 +24,13 @@ html, body {
 }
 
 iframe {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    position: absolute;
+    width: 852px;
+    height: 393px;
     border: none;
+    left: 50%;
+    top: 50%;
+    transform-origin: center center;
 }
 </style>
 
@@ -38,6 +39,21 @@ iframe {
 <body>
 
 <iframe src="simulator.html"></iframe>
+
+<script>
+function resizeGame() {
+    const scale = Math.min(
+        window.innerWidth / 852,
+        window.innerHeight / 393
+    );
+
+    document.querySelector("iframe").style.transform =
+        `translate(-50%, -50%) scale(${scale})`;
+}
+
+window.addEventListener("resize", resizeGame);
+window.addEventListener("load", resizeGame);
+</script>
 
 <script>
 if ("serviceWorker" in navigator) {
